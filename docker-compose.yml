@@ -1,0 +1,19 @@
+version: '2.3'
+services:
+  python:
+    env_file: .env
+    build: 
+      context: ./python
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
+    container_name: 'python'
+    working_dir: "/usr/sources"
+    volumes: 
+     - ./sources:/usr/sources
+    ports:
+     - "8080:8080"
+    tty: true
+    stdin_open: true
+    runtime: nvidia
+    restart: always
